@@ -7,8 +7,6 @@ namespace Network
 {
     public class SteamLobbyManager : MonoBehaviour
     {
-        public static SteamLobbyManager Instance { get; private set; }
-
         // Public events
         // public Action OnLobbyEntered;
 
@@ -29,15 +27,7 @@ namespace Network
         [SerializeField] private int maxPlayersInLobby = 4;
 
         #region Unity Methods
-
-        private void OnEnable()
-        {
-            if (Instance != null)
-                Debug.LogError("Singleton duplicated!");
-
-            Instance = this;
-        }
-
+        
         private void Start()
         {
             SteamAPI.Init();
