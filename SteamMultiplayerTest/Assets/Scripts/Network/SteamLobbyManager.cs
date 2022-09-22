@@ -81,6 +81,7 @@ namespace Network
         #endregion
 
         #region SteamCallbackHandlers
+        
         private void OnLobbyCreated(LobbyCreated_t callback)
         {
             if (callback.m_eResult != EResult.k_EResultOK)
