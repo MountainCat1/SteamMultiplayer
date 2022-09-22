@@ -1,3 +1,4 @@
+using System;
 using Netcode.Transports;
 using Steamworks;
 using Unity.Netcode;
@@ -28,9 +29,28 @@ namespace Network
 
         #region Unity Methods
         
+        private void OnEnable()
+        {
+            Debug.Log("Starting steam...");
+            SteamAPI.Init();
+        }
+        
+        private void OnDisable()
+        {
+            Debug.Log("Shutting down steam...");
+            SteamAPI.Shutdown();
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                OnDisable();
+            }
+        }
+
         private void Start()
         {
-            SteamAPI.Init();
             if (!SteamAPI.IsSteamRunning())
             {
                 Debug.LogError("Steam is not initialized");
