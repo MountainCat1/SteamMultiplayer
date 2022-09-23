@@ -10,6 +10,7 @@ namespace Network
     {
         // Public events
         // public Action OnLobbyEntered;
+        // TODO 
 
         // Steam Callbacks
         protected Callback<LobbyEnter_t> LobbyEnteredCallback;
@@ -58,10 +59,10 @@ namespace Network
             }
 
             // Register steam callbacks
-            LobbyEnteredCallback = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
-            LobbyCreatedCallback = Callback<LobbyCreated_t>.Create(OnLobbyCreated);
+            LobbyEnteredCallback = Callback<LobbyEnter_t>.Create(OnLobbyEnteredSteamHandler);
+            LobbyCreatedCallback = Callback<LobbyCreated_t>.Create(OnLobbyCreatedSteamHandler);
         
-            JoinRequestCallback = Callback<GameLobbyJoinRequested_t>.Create(OnJoinRequest);
+            JoinRequestCallback = Callback<GameLobbyJoinRequested_t>.Create(OnJoinRequestSteamHandler);
         }
 
         #endregion
@@ -82,7 +83,7 @@ namespace Network
 
         #region SteamCallbackHandlers
         
-        private void OnLobbyCreated(LobbyCreated_t callback)
+        private void OnLobbyCreatedSteamHandler(LobbyCreated_t callback)
         {
             if (callback.m_eResult != EResult.k_EResultOK)
             {
@@ -105,13 +106,13 @@ namespace Network
                 $"{SteamFriends.GetPersonaName()}'s lobby");
         }
 
-        private void OnJoinRequest(GameLobbyJoinRequested_t callback)
+        private void OnJoinRequestSteamHandler(GameLobbyJoinRequested_t callback)
         {
             Debug.Log("Request to join lobby");
             SteamMatchmaking.JoinLobby(callback.m_steamIDLobby);
         }
 
-        private void OnLobbyEntered(LobbyEnter_t callback)
+        private void OnLobbyEnteredSteamHandler(LobbyEnter_t callback)
         {
             var lobbyID = new CSteamID(callback.m_ulSteamIDLobby);
 
