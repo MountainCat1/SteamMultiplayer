@@ -1792,7 +1792,7 @@ MonoBehaviour:
   NetworkConfig:
     ProtocolVersion: 0
     NetworkTransport: {fileID: 1166969131}
-    PlayerPrefab: {fileID: 0}
+    PlayerPrefab: {fileID: 3812392769026012623, guid: a7381767f1559584eb75320d81f49179, type: 3}
     NetworkPrefabs: []
     TickRate: 30
     ClientConnectionBufferTimeout: 10
@@ -2039,7 +2039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f580776718e51524ba15539e89c80f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lobbyTitle: {fileID: 0}
+  lobbyTitle: {fileID: 1837608422}
   steamLobbyManager: {fileID: 2035312875}
   networkManager: {fileID: 1166969132}
 --- !u!1 &1253034728
@@ -2391,8 +2391,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2662,6 +2662,7 @@ MonoBehaviour:
   networkManager: {fileID: 1166969132}
   networkTransport: {fileID: 1166969131}
   maxPlayersInLobby: 4
+  steamCallbacksPerSecond: 30
 --- !u!4 &2035312876
 Transform:
   m_ObjectHideFlags: 0

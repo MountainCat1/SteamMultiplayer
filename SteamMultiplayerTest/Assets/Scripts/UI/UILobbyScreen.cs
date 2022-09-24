@@ -7,6 +7,7 @@ using UnityEngine.Serialization;
 
 namespace UI
 {
+    [RequireComponent(typeof(UIMenuScreen))]
     public class UILobbyScreen : MonoBehaviour
     {
         // UI Elements
@@ -21,18 +22,21 @@ namespace UI
             steamLobbyManager.OnLobbyHosted += OnLobbyHosted;
             steamLobbyManager.OnLobbyEntered += OnLobbyEntered;
             steamLobbyManager.OnLobbyDataUpdated += OnLobbyDataUpdated;
+
+            var menuScreen = GetComponent<UIMenuScreen>();
             
-            networkManager.OnClientConnectedCallback += OnClientConnectedCallback;
+            menuScreen.OnScreenHide += OnScreenHide;
+        }
+
+        private void OnScreenHide()
+        {
+            steamLobbyManager.LeaveLobby();
         }
 
         private void OnLobbyDataUpdated()
         {
+            Debug.Log("Updating lobby data...");
             lobbyTitle.text = steamLobbyManager.LobbyName;
-        }
-
-        private void OnClientConnectedCallback(ulong obj)
-        {
-            throw new NotImplementedException();
         }
         
         #region Event Handlers

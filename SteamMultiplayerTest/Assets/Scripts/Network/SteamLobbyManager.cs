@@ -84,7 +84,7 @@ namespace Network
             JoinRequestCallback = Callback<GameLobbyJoinRequested_t>.Create(OnJoinRequestSteamHandler);
             
             LobbyDataUpdatedCallback = Callback<LobbyDataUpdate_t>.Create(OnLobbyDataUpdatedSteamHandler);
-
+            
             StartCoroutine(SteamCallbackCoroutine());
         }
 
@@ -112,6 +112,13 @@ namespace Network
         public void RequestLobbyInfo(CSteamID lobbyId)
         {
             SteamMatchmaking.RequestLobbyData(lobbyId);
+        }
+
+        public void LeaveLobby()
+        {
+            Debug.Log("Leaving lobby");
+            networkManager.Shutdown();
+            SteamMatchmaking.LeaveLobby(CurrentLobbySteamID);
         }
 
         #endregion
