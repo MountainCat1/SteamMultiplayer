@@ -3,6 +3,7 @@ using System.Collections;
 using System.Text;
 using Netcode.Transports;
 using Steamworks;
+using Unity.Collections;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -24,8 +25,6 @@ namespace Network
         /// Event invoked whenever steam lobby data is retrieved
         /// </summary>
         public event Action OnLobbyDataUpdated;
-
-        // TODO 
 
         // Steam Callbacks
         protected Callback<LobbyEnter_t> LobbyEnteredCallback;
@@ -84,7 +83,7 @@ namespace Network
             JoinRequestCallback = Callback<GameLobbyJoinRequested_t>.Create(OnJoinRequestSteamHandler);
             
             LobbyDataUpdatedCallback = Callback<LobbyDataUpdate_t>.Create(OnLobbyDataUpdatedSteamHandler);
-            
+
             StartCoroutine(SteamCallbackCoroutine());
         }
 
@@ -98,12 +97,17 @@ namespace Network
         
         #region Public Methods
 
+        public void RunCallbacks()
+        {
+            SteamAPI.RunCallbacks();
+        }
+        
         public void HostLobby()
         {
             Debug.Log("Creating Steam lobby...");
             SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypePublic, maxPlayersInLobby);
         }
-
+        
         public void JoinLobby(CSteamID lobbyId)
         {
             SteamMatchmaking.JoinLobby(lobbyId);
@@ -119,6 +123,17 @@ namespace Network
             Debug.Log("Leaving lobby");
             networkManager.Shutdown();
             SteamMatchmaking.LeaveLobby(CurrentLobbySteamID);
+        }
+
+        public CSteamID GetPlayerSteamId(int playerIndex)
+        {
+            int memberCount = SteamMatchmaking.GetNumLobbyMembers(CurrentLobbySteamID);
+            return SteamMatchmaking.GetLobbyMemberByIndex(CurrentLobbySteamID, playerIndex);
+        }
+        
+        public string GetPlayerName(ulong playerCSteamId)
+        {
+            return SteamFriends.GetFriendPersonaName((CSteamID)playerCSteamId);
         }
 
         #endregion
@@ -138,7 +153,7 @@ namespace Network
                 return;
             }
 
-            Debug.Log("Lobby created successfully");
+            Debug.Log($"Lobby created successfully ({callback.m_ulSteamIDLobby})");
 
             Debug.Log("Creating host...");
             networkManager.StartHost();
@@ -162,7 +177,8 @@ namespace Network
 
         private void OnLobbyEnteredSteamHandler(LobbyEnter_t callback)
         {
-            var lobbyID = new CSteamID(callback.m_ulSteamIDLobby);
+            Debug.Log("Entered steam lobby");
+            var lobbyId = new CSteamID(callback.m_ulSteamIDLobby);
 
             // Everyone
             CurrentLobbyID = callback.m_ulSteamIDLobby;
@@ -183,7 +199,7 @@ namespace Network
             
             OnLobbyEntered?.Invoke();
         }
-    
+
         #endregion
 
         #region Coroutines
@@ -208,7 +224,7 @@ namespace Network
         
         #region Private Methods
 
-        public void SendSteamLobbyMessages(string message)
+        public void SendSteamLobbyMessage(string message)
         {
             // https://partner.steamgames.com/doc/api/ISteamMatchmaking#SendLobbyChatMsg
             SteamMatchmaking.SendLobbyChatMsg(CurrentLobbySteamID, Encoding.UTF8.GetBytes(message), message.Length + 1);
