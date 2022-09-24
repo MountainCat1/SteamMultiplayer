@@ -181,11 +181,15 @@ namespace Network
 
         #region Coroutines
 
+        /// <summary>
+        /// Coroutine running all Steam API callbacks
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator SteamCallbackCoroutine()
         {
             float delay = 1f / steamCallbacksPerSecond;
 
-            while (true)
+            while (SteamAPI.IsSteamRunning())
             {
                 yield return new WaitForSeconds(delay);
             
