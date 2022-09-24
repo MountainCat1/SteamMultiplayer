@@ -10,6 +10,21 @@ namespace Network
 {
     public class HostManager : MonoBehaviour
     {
+        #region Events
+        
+        /// <summary>
+        /// Event invoked whenever player joined a lobby and <see cref="Player"/> was instantiated for them
+        /// </summary>
+        public event Action<Player> OnPlayerJoined;
+        
+        /// <summary>
+        /// Event invoked whenever player joined a lobby and <see cref="Player"/> was instantiated for them
+        /// </summary>
+        public event Action<Player> OnPlayerLeft;
+
+        #endregion
+        
+        [Header("Dependencies")]
         [SerializeField] private NetworkManager networkManager;
         [SerializeField] private SteamLobbyManager lobbyManager;
 
@@ -33,6 +48,10 @@ namespace Network
         {
             Debug.Log($"Player ({clientId} disconnected)");
 
+            var player = _players[clientId];
+
+            OnPlayerLeft?.Invoke(player);
+            
             _players.Remove(clientId);
         }
 
@@ -67,6 +86,8 @@ namespace Network
             playerObject.gameObject.name = lobbyManager.GetPlayerName(playerObject.CSteamId.Value);
             
             _players.Add(clientId, playerObject);
+            
+            OnPlayerJoined?.Invoke(playerObject);
         }
         
         #endregion
