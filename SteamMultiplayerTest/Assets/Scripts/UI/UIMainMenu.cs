@@ -26,6 +26,8 @@ namespace UI
             }
         }
 
+        #region Menu Navigation
+
         /// <summary>
         /// Shows menuScreen and adds previous one to the stack
         /// </summary>
@@ -89,5 +91,7 @@ namespace UI
 
             menuScreen.Hide();
         }
+
+        #endregion
     }
 }
