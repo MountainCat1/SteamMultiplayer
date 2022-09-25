@@ -187,8 +187,10 @@ namespace Network
             
             CurrentLobbyID = lobbyId;
             CurrentLobbySteamID = new CSteamID(CurrentLobbyID);
+
+            var ownerSteamId = SteamMatchmaking.GetLobbyOwner(CurrentLobbySteamID);
             
-            networkTransport.ConnectToSteamID = lobbyId;
+            networkTransport.ConnectToSteamID = (ulong)ownerSteamId;
 
             OnLobbyEntered?.Invoke();
         }
