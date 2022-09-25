@@ -37,7 +37,7 @@ namespace Network
 
         [SerializeField] public SceneReference initialScene;
 
-        private Dictionary<ulong, Player> _players = new Dictionary<ulong, Player>();
+        private readonly Dictionary<ulong, Player> _players = new();
 
         #region Unity Methods
 
