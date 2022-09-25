@@ -90,7 +90,7 @@ namespace Network
 
         #region Event Handlers
 
-        public void OnLobbyLocalLeft()
+        private void OnLobbyLocalLeft()
         {
             Debug.Log("Shutting down Network Manager...");
             networkManager.Shutdown();
