@@ -28,10 +28,10 @@ namespace UI
         // Variables
         private Dictionary<Player, UIPlayerEntry> _playerEntries = new Dictionary<Player, UIPlayerEntry>();
 
+        #region Unity Methods
+
         private void Awake()
         {
-            steamLobbyManager.OnLobbyHosted += OnLobbyHosted;
-            steamLobbyManager.OnLobbyEntered += OnLobbyEntered;
             steamLobbyManager.OnLobbyDataUpdated += OnLobbyDataUpdated;
             
             hostManager.OnPlayerJoined += OnPlayerJoined;
@@ -42,6 +42,33 @@ namespace UI
             menuScreen.OnScreenHide += OnScreenHide;
         }
 
+        #endregion
+
+        #region Public Methods
+
+        public void StartGame()
+        {
+            
+        }
+
+        #endregion
+        
+        #region Private Methods
+
+        private void ClearEntries()
+        {
+            foreach (var entry in _playerEntries.Values)
+            {
+                Destroy(entry.gameObject);
+            }
+            
+            _playerEntries.Clear();
+        }
+
+        #endregion
+
+        #region Event Handlers
+        
         private void OnPlayerLeft(Player player)
         {
             var entry = _playerEntries[player];
@@ -59,40 +86,18 @@ namespace UI
             
             _playerEntries.Add(player, playerEntry);
         }
-
+        
         private void OnScreenHide()
         {
             ClearEntries();
             
             steamLobbyManager.LeaveLobby();
         }
-
+        
         private void OnLobbyDataUpdated()
         {
             Debug.Log("Updating lobby data...");
             lobbyTitle.text = steamLobbyManager.LobbyName;
-        }
-
-        private void ClearEntries()
-        {
-            foreach (var entry in _playerEntries.Values)
-            {
-                Destroy(entry.gameObject);
-            }
-            
-            _playerEntries.Clear();
-        }
-        
-        #region Event Handlers
-        
-        private void OnLobbyHosted()
-        {
-            
-        }
-        
-        private void OnLobbyEntered()
-        {
-            
         }
         
         #endregion

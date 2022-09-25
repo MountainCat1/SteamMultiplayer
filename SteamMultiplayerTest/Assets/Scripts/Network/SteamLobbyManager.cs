@@ -113,7 +113,7 @@ namespace Network
             SteamMatchmaking.JoinLobby(lobbyId);
         }
 
-        public void RequestLobbyInfo(CSteamID lobbyId)
+        public void RequestLobbyData(CSteamID lobbyId)
         {
             SteamMatchmaking.RequestLobbyData(lobbyId);
         }
