@@ -16,22 +16,22 @@ namespace Network
         /// <summary>
         /// Event invoked whenever steam lobby is created
         /// </summary>
-        public event Action OnLobbyCreated;
+        public event Action OnSteamLobbyCreated;
         
         /// <summary>
         /// Event invoked whenever player joins a lobby
         /// </summary>
-        public event Action OnLobbyEntered;
+        public event Action OnSteamLobbyEntered;
         
         /// <summary>
         /// Event invoked whenever local player leaves a lobby
         /// </summary>
-        public event Action OnLobbyLocalLeft;
+        public event Action OnSteamLobbyLocalLeft;
         
         /// <summary>
         /// Event invoked whenever steam lobby data is retrieved
         /// </summary>
-        public event Action OnLobbyDataUpdated;
+        public event Action OnSteamLobbyDataUpdated;
 
         // Steam Callbacks
         protected Callback<LobbyEnter_t> LobbyEnteredCallback;
@@ -128,7 +128,7 @@ namespace Network
         public void LeaveLobby()
         {
             Debug.Log("Leaving lobby");
-            OnLobbyLocalLeft?.Invoke();
+            OnSteamLobbyLocalLeft?.Invoke();
             SteamMatchmaking.LeaveLobby(CurrentLobbySteamID);
         }
 
@@ -148,7 +148,7 @@ namespace Network
 
         private void OnLobbyDataUpdatedSteamHandler(LobbyDataUpdate_t lobbyData)
         {
-            OnLobbyDataUpdated?.Invoke();
+            OnSteamLobbyDataUpdated?.Invoke();
         }
         
         private void OnLobbyCreatedSteamHandler(LobbyCreated_t callback)
@@ -161,7 +161,7 @@ namespace Network
 
             Debug.Log($"Lobby created successfully ({callback.m_ulSteamIDLobby})");
 
-            OnLobbyCreated?.Invoke();
+            OnSteamLobbyCreated?.Invoke();
 
             SteamMatchmaking.SetLobbyData(
                 new CSteamID(callback.m_ulSteamIDLobby),
@@ -192,7 +192,7 @@ namespace Network
             
             networkTransport.ConnectToSteamID = (ulong)ownerSteamId;
 
-            OnLobbyEntered?.Invoke();
+            OnSteamLobbyEntered?.Invoke();
         }
 
         #endregion

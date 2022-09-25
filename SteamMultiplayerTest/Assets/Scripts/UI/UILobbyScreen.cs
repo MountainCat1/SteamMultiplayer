@@ -32,7 +32,7 @@ namespace UI
 
         private void Awake()
         {
-            steamLobbyManager.OnLobbyDataUpdated += OnLobbyDataUpdated;
+            steamLobbyManager.OnSteamLobbyDataUpdated += OnSteamLobbyDataUpdated;
             
             hostManager.OnPlayerJoined += OnPlayerJoined;
             hostManager.OnPlayerLeft += OnPlayerLeft;
@@ -94,7 +94,7 @@ namespace UI
             steamLobbyManager.LeaveLobby();
         }
         
-        private void OnLobbyDataUpdated()
+        private void OnSteamLobbyDataUpdated()
         {
             Debug.Log("Updating lobby data...");
             lobbyTitle.text = steamLobbyManager.LobbyName;

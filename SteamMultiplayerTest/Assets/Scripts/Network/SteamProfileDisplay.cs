@@ -34,8 +34,11 @@ namespace Network
 
             if (imageId == -1)
             {
-                Debug.LogError($"Failed to load steam avatar for ({steamID})");
                 return;
+            }
+            else
+            {
+                _image.texture = GetSteamImageAsTexture(imageId);
             }
         }
 

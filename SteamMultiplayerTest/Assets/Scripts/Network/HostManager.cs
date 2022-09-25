@@ -11,7 +11,7 @@ namespace Network
     public class HostManager : MonoBehaviour
     {
         #region Events
-
+        
         /// <summary>
         /// Event invoked whenever player joined a lobby and <see cref="Player"/> was instantiated for them
         /// </summary>
@@ -38,9 +38,9 @@ namespace Network
             networkManager.OnClientConnectedCallback += OnClientConnectedCallback;
             networkManager.OnClientDisconnectCallback += OnClientDisconnectCallback;
 
-            lobbyManager.OnLobbyCreated += OnLobbyCreated;
-            lobbyManager.OnLobbyEntered += OnLobbyEntered;
-            lobbyManager.OnLobbyLocalLeft += OnLobbyLocalLeft;
+            lobbyManager.OnSteamLobbyCreated += OnSteamLobbyCreated;
+            lobbyManager.OnSteamLobbyEntered += OnSteamLobbyEntered;
+            lobbyManager.OnSteamLobbyLocalLeft += OnSteamLobbyLocalLeft;
         }
         
         #endregion
@@ -90,19 +90,19 @@ namespace Network
 
         #region Event Handlers
 
-        private void OnLobbyLocalLeft()
+        private void OnSteamLobbyLocalLeft()
         {
             Debug.Log("Shutting down Network Manager...");
             networkManager.Shutdown();
         }
         
-        private void OnLobbyCreated()
+        private void OnSteamLobbyCreated()
         {
             Debug.Log("Starting a host...");
             networkManager.StartHost();
         }
 
-        private void OnLobbyEntered()
+        private void OnSteamLobbyEntered()
         {
             if (networkManager.IsHost)
                 return;
