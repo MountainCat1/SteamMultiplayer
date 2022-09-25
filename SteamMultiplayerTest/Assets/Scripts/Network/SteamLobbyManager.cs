@@ -75,8 +75,10 @@ namespace Network
             }
         }
 
-        private void Start()
+        private void Awake()
         {
+            DontDestroyOnLoad(gameObject);
+            
             if (!SteamAPI.IsSteamRunning())
             {
                 Debug.LogError("Steam is not initialized");

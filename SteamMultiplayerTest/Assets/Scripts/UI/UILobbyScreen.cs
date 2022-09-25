@@ -4,6 +4,7 @@ using Network;
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 namespace UI
@@ -50,7 +51,7 @@ namespace UI
 
         public void StartGame()
         {
-            
+            hostManager.StartGame();
         }
 
         #endregion

@@ -5,6 +5,8 @@ using System.Linq;
 using Steamworks;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Utilities;
 
 namespace Network
 {
@@ -28,10 +30,12 @@ namespace Network
 
         #endregion
 
-        [Header("Dependencies")] [SerializeField]
-        private NetworkManager networkManager;
-
+        [Header("Dependencies")] 
+        [SerializeField] private NetworkManager networkManager;
         [SerializeField] private SteamLobbyManager lobbyManager;
+        
+
+        [SerializeField] public SceneReference initialScene;
 
         private Dictionary<ulong, Player> _players = new Dictionary<ulong, Player>();
 
@@ -85,7 +89,12 @@ namespace Network
 
         #region Public Methods
 
-        public void StartLobby()
+        public void StartGame()
+        {
+            networkManager.SceneManager.LoadScene(initialScene.ScenePath, LoadSceneMode.Single);
+        }
+        
+        public void HostLobby()
         {
             lobbyManager.HostLobby();
         }

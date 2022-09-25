@@ -2279,6 +2279,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   networkManager: {fileID: 1166969132}
   lobbyManager: {fileID: 2035312875}
+  initialScene:
+    sceneAsset: {fileID: 102900000, guid: 14a4cff086b0e2c4c8776c1fbd00f252, type: 3}
+    scenePath: Assets/Scenes/Initial Game Scene.unity
 --- !u!1 &1144818471
 GameObject:
   m_ObjectHideFlags: 0
