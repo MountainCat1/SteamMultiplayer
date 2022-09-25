@@ -33,13 +33,9 @@ namespace Network
             int imageId = SteamFriends.GetLargeFriendAvatar(playerSteamId);
 
             if (imageId == -1)
-            {
                 return;
-            }
-            else
-            {
-                _image.texture = GetSteamImageAsTexture(imageId);
-            }
+
+            _image.texture = GetSteamImageAsTexture(imageId);
         }
 
         private void Update()

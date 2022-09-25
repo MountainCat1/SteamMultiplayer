@@ -11,7 +11,11 @@ namespace Network
     public class HostManager : MonoBehaviour
     {
         #region Events
-        
+
+        /// <summary>
+        /// Event invoked whenever local player joins a lobby
+        /// </summary>
+        public event Action OnLobbyStart; 
         /// <summary>
         /// Event invoked whenever player joined a lobby and <see cref="Player"/> was instantiated for them
         /// </summary>
@@ -86,6 +90,11 @@ namespace Network
             lobbyManager.HostLobby();
         }
 
+        public void LeaveLobby()
+        {
+            lobbyManager.LeaveLobby();
+        }
+        
         #endregion
 
         #region Event Handlers
@@ -104,6 +113,8 @@ namespace Network
 
         private void OnSteamLobbyEntered()
         {
+            OnLobbyStart?.Invoke();
+            
             if (networkManager.IsHost)
                 return;
             // Clients logic

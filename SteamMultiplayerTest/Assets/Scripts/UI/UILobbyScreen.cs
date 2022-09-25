@@ -24,6 +24,7 @@ namespace UI
         [SerializeField] private SteamLobbyManager steamLobbyManager;
         [SerializeField] private NetworkManager networkManager;
         [SerializeField] private HostManager hostManager;
+        private UIMenuScreen _menuScreen;
 
         // Variables
         private Dictionary<Player, UIPlayerEntry> _playerEntries = new Dictionary<Player, UIPlayerEntry>();
@@ -36,10 +37,11 @@ namespace UI
             
             hostManager.OnPlayerJoined += OnPlayerJoined;
             hostManager.OnPlayerLeft += OnPlayerLeft;
+            hostManager.OnLobbyStart += OnLobbyStart;
 
-            var menuScreen = GetComponent<UIMenuScreen>();
+            _menuScreen = GetComponent<UIMenuScreen>();
             
-            menuScreen.OnScreenHide += OnScreenHide;
+            _menuScreen.OnScreenHide += OnScreenHide;
         }
 
         #endregion
@@ -68,6 +70,11 @@ namespace UI
         #endregion
 
         #region Event Handlers
+
+        private void OnLobbyStart()
+        {
+            _menuScreen.Show();
+        }
         
         private void OnPlayerLeft(Player player)
         {
@@ -91,7 +98,7 @@ namespace UI
         {
             ClearEntries();
             
-            steamLobbyManager.LeaveLobby();
+            hostManager.LeaveLobby();
         }
         
         private void OnSteamLobbyDataUpdated()
