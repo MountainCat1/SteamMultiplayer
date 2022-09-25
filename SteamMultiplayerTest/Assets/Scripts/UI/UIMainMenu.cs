@@ -13,6 +13,8 @@ namespace UI
         private readonly List<UIMenuScreen> _menuScreenStack = new();
         private UIMenuScreen _presentMenuScreen;
 
+        #region Unity Methods
+
         private void Start()
         {
             SetScreen(mainMenuScreen);
@@ -26,6 +28,8 @@ namespace UI
             }
         }
 
+        #endregion
+        
         #region Menu Navigation
 
         /// <summary>
@@ -36,7 +40,7 @@ namespace UI
         {
             _menuScreenStack.Add(_presentMenuScreen);
             HideMenuScreen(_presentMenuScreen);
-            
+
             _presentMenuScreen = menuScreen;
             _presentMenuScreen.Show();
         }
@@ -59,9 +63,9 @@ namespace UI
         /// </summary>
         public void GoBack()
         {
-            if(_presentMenuScreen == mainMenuScreen)
+            if (_presentMenuScreen == mainMenuScreen)
                 return;
-            
+
             if (_menuScreenStack.Any())
             {
                 SetScreen(mainMenuScreen);
@@ -69,14 +73,22 @@ namespace UI
             }
 
             var newMenuScreen = _menuScreenStack[^1];
-            
+
             HideMenuScreen(_presentMenuScreen);
             _presentMenuScreen = newMenuScreen;
             newMenuScreen.Show();
-            
+
             _menuScreenStack.RemoveAt(_menuScreenStack.Count - 1);
         }
 
+        /// <summary>
+        /// Quits game -- calls <see cref="Application"/>.<see cref="Application.Quit(int)"/>
+        /// </summary>
+        public void QuitGame()
+        {
+            Application.Quit();
+        }
+        
         /// <summary>
         /// Hides menu screen, no stack actions performed
         /// </summary>
