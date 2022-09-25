@@ -14,13 +14,20 @@ namespace Network
         // Public events
 
         /// <summary>
-        /// Event invoked whenever local instance hosts lobby
-        /// </summary>>
-        public event Action OnLobbyHosted;
+        /// Event invoked whenever steam lobby is created
+        /// </summary>
+        public event Action OnLobbyCreated;
+        
         /// <summary>
-        /// Event invoked whenever local instance joins a lobby
+        /// Event invoked whenever player joins a lobby
         /// </summary>
         public event Action OnLobbyEntered;
+        
+        /// <summary>
+        /// Event invoked whenever local player leaves a lobby
+        /// </summary>
+        public event Action OnLobbyLocalLeft;
+        
         /// <summary>
         /// Event invoked whenever steam lobby data is retrieved
         /// </summary>
@@ -39,7 +46,7 @@ namespace Network
         protected const string HostAddressKey = "HostAddress";
         protected const string LobbyNameKey = "name";
     
-        [SerializeField] private NetworkManager networkManager;
+        //[SerializeField] private NetworkManager networkManager;
         [SerializeField] private SteamNetworkingTransport networkTransport;
 
         // Configuration
@@ -121,13 +128,12 @@ namespace Network
         public void LeaveLobby()
         {
             Debug.Log("Leaving lobby");
-            networkManager.Shutdown();
+            OnLobbyLocalLeft?.Invoke();
             SteamMatchmaking.LeaveLobby(CurrentLobbySteamID);
         }
 
         public CSteamID GetPlayerSteamId(int playerIndex)
         {
-            int memberCount = SteamMatchmaking.GetNumLobbyMembers(CurrentLobbySteamID);
             return SteamMatchmaking.GetLobbyMemberByIndex(CurrentLobbySteamID, playerIndex);
         }
         
@@ -155,8 +161,7 @@ namespace Network
 
             Debug.Log($"Lobby created successfully ({callback.m_ulSteamIDLobby})");
 
-            Debug.Log("Creating host...");
-            networkManager.StartHost();
+            OnLobbyCreated?.Invoke();
 
             SteamMatchmaking.SetLobbyData(
                 new CSteamID(callback.m_ulSteamIDLobby),
@@ -178,25 +183,13 @@ namespace Network
         private void OnLobbyEnteredSteamHandler(LobbyEnter_t callback)
         {
             Debug.Log("Entered steam lobby");
-            var lobbyId = new CSteamID(callback.m_ulSteamIDLobby);
-
-            // Everyone
-            CurrentLobbyID = callback.m_ulSteamIDLobby;
+            var lobbyId = callback.m_ulSteamIDLobby;
+            
+            CurrentLobbyID = lobbyId;
             CurrentLobbySteamID = new CSteamID(CurrentLobbyID);
             
-            // Host
-            if (networkManager.IsHost)
-            {
-                OnLobbyHosted?.Invoke();
-                OnLobbyEntered?.Invoke();
-                return;
-            }
-            
-            // Clients
-            networkTransport.ConnectToSteamID = callback.m_ulSteamIDLobby;
+            networkTransport.ConnectToSteamID = lobbyId;
 
-            networkManager.StartClient();
-            
             OnLobbyEntered?.Invoke();
         }
 
