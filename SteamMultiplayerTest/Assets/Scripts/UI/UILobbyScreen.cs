@@ -25,7 +25,7 @@ namespace UI
         private UIMenuScreen _menuScreen;
 
         // Variables
-        private Dictionary<Player, UIPlayerEntry> _playerEntries = new Dictionary<Player, UIPlayerEntry>();
+        private Dictionary<ClientPlayer, UIPlayerEntry> _playerEntries = new Dictionary<ClientPlayer, UIPlayerEntry>();
 
         #region Unity Methods
 
@@ -74,22 +74,22 @@ namespace UI
             _menuScreen.Show();
         }
         
-        private void OnPlayerLeft(Player player)
+        private void OnPlayerLeft(ClientPlayer clientPlayer)
         {
-            var entry = _playerEntries[player];
+            var entry = _playerEntries[clientPlayer];
             
             Destroy(entry.gameObject);
             
-            _playerEntries.Remove(player);
+            _playerEntries.Remove(clientPlayer);
         }
 
-        private void OnPlayerJoined(Player player)
+        private void OnPlayerJoined(ClientPlayer clientPlayer)
         {
             var playerEntry = Instantiate(playerEntryPrefab, playerEntriesContainer);
             
-            playerEntry.Initialize(player);
+            playerEntry.Initialize(clientPlayer);
             
-            _playerEntries.Add(player, playerEntry);
+            _playerEntries.Add(clientPlayer, playerEntry);
         }
         
         private void OnScreenHide()

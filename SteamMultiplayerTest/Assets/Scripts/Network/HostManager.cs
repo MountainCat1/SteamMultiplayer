@@ -17,14 +17,14 @@ namespace Network
         /// </summary>
         public event Action OnLobbyStart; 
         /// <summary>
-        /// Event invoked whenever player joined a lobby and <see cref="Player"/> was instantiated for them
+        /// Event invoked whenever player joined a lobby and <see cref="ClientPlayer"/> was instantiated for them
         /// </summary>
-        public event Action<Player> OnPlayerJoined;
+        public event Action<ClientPlayer> OnPlayerJoined;
 
         /// <summary>
-        /// Event invoked whenever player joined a lobby and <see cref="Player"/> was instantiated for them
+        /// Event invoked whenever player joined a lobby and <see cref="ClientPlayer"/> was instantiated for them
         /// </summary>
-        public event Action<Player> OnPlayerLeft;
+        public event Action<ClientPlayer> OnPlayerLeft;
 
         #endregion
 
@@ -35,7 +35,7 @@ namespace Network
 
         [SerializeField] public SceneReference initialScene;
 
-        private readonly Dictionary<ulong, Player> _players = new();
+        private readonly Dictionary<ulong, ClientPlayer> _players = new();
 
         #region Unity Methods
 
@@ -72,7 +72,7 @@ namespace Network
 
             // Handle player joining lobby
             var connectedClients = networkManager.ConnectedClients;
-            var playerObject = connectedClients[clientId].PlayerObject.GetComponent<Player>();
+            var playerObject = connectedClients[clientId].PlayerObject.GetComponent<ClientPlayer>();
 
             playerObject.CSteamId.Value = playerCSteamId;
             playerObject.Name.Value = lobbyManager.GetPlayerName(playerObject.CSteamId.Value);

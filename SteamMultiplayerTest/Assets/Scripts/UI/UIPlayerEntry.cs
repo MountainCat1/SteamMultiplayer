@@ -9,11 +9,11 @@ public class UIPlayerEntry : MonoBehaviour
     [SerializeField] private SteamProfileDisplay steamProfileDisplay;
     
     // Variables
-    private Player _player;
+    private ClientPlayer _clientPlayer;
 
-    public void Initialize(Player player)
+    public void Initialize(ClientPlayer clientPlayer)
     {
-        playerNameDisplay.text = player.Name.Value.ToString();
-        steamProfileDisplay.Initialize(player.CSteamId.Value);
+        playerNameDisplay.text = clientPlayer.Name.Value.ToString();
+        steamProfileDisplay.Initialize(clientPlayer.CSteamId.Value);
     }
 }
