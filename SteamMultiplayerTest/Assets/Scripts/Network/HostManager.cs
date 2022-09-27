@@ -35,7 +35,7 @@ namespace Network
 
         [SerializeField] public SceneReference initialScene;
 
-        private readonly Dictionary<ulong, ClientPlayer> _players = new();
+        public Dictionary<ulong, ClientPlayer> Players { get; } = new();
 
         #region Unity Methods
 
@@ -78,7 +78,7 @@ namespace Network
             playerObject.Name.Value = lobbyManager.GetPlayerName(playerObject.CSteamId.Value);
             playerObject.gameObject.name = lobbyManager.GetPlayerName(playerObject.CSteamId.Value);
 
-            _players.Add(clientId, playerObject);
+            Players.Add(clientId, playerObject);
 
             OnPlayerJoined?.Invoke(playerObject);
         }
@@ -134,11 +134,11 @@ namespace Network
         {
             Debug.Log($"Player ({clientId} disconnected)");
 
-            var player = _players[clientId];
+            var player = Players[clientId];
 
             OnPlayerLeft?.Invoke(player);
 
-            _players.Remove(clientId);
+            Players.Remove(clientId);
         }
 
         private void OnClientConnectedCallback(ulong clientId)
