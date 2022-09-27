@@ -135,8 +135,6 @@ GameObject:
   - component: {fileID: 1249356227}
   - component: {fileID: 1249356226}
   - component: {fileID: 1249356231}
-  - component: {fileID: 1249356230}
-  - component: {fileID: 1249356229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -210,72 +208,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1249356229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1249356225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df2868252ab5c4d1da357e8f11f1b524, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <IsLocalPlayer>k__BackingField: 0
-  <IsOwner>k__BackingField: 0
-  <IsServer>k__BackingField: 0
-  <IsClient>k__BackingField: 0
-  <IsHost>k__BackingField: 0
-  <IsOwnedByServer>k__BackingField: 0
-  <IsSpawned>k__BackingField: 0
-  m_NetworkObject: {fileID: 0}
-  <NetworkObjectId>k__BackingField: 0
-  <NetworkBehaviourId>k__BackingField: 0
-  NetworkBehaviourIdCache: 0
-  <OwnerClientId>k__BackingField: 0
-  m_VarInit: 0
-  SyncPositionX: 1
-  SyncPositionY: 1
-  SyncPositionZ: 1
-  SyncRotAngleX: 1
-  SyncRotAngleY: 1
-  SyncRotAngleZ: 1
-  SyncScaleX: 1
-  SyncScaleY: 1
-  SyncScaleZ: 1
-  PositionThreshold: 0.001
-  RotAngleThreshold: 0.01
-  ScaleThreshold: 0.01
-  InLocalSpace: 0
-  Interpolate: 1
-  <CanCommitToTransform>k__BackingField: 0
-  m_CachedIsServer: 0
-  m_CachedNetworkManager: {fileID: 0}
-  m_ClientIds:
-  - 0
-  m_TickFrequency: 0
---- !u!114 &1249356230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1249356225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fcbf5eb0902445d8108a8a5ec695a7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_CanvasGroup: {fileID: 0}
-  m_DelayBeforeFadeOut: 0.5
-  m_FadeOutDuration: 0.1
-  m_ProgressBar: {fileID: 0}
-  m_SceneName: {fileID: 0}
-  m_OtherPlayersProgressBars: []
-  m_OtherPlayerNamesTexts: []
-  m_LoadingProgressManager: {fileID: 0}
-  m_LoadingScreenRunning: 0
 --- !u!114 &1249356231
 MonoBehaviour:
   m_ObjectHideFlags: 0
