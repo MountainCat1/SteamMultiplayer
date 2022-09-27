@@ -1,11 +1,8 @@
-using System;
 using System.Collections.Generic;
 using Network;
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 namespace UI
 {

@@ -3,8 +3,6 @@ using System.Collections;
 using System.Text;
 using Netcode.Transports;
 using Steamworks;
-using Unity.Collections;
-using Unity.Netcode;
 using UnityEngine;
 
 namespace Network
