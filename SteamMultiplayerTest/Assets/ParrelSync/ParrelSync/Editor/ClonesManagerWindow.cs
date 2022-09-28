@@ -20,7 +20,7 @@ namespace ParrelSync
         [MenuItem("ParrelSync/Clones Manager", priority = 0)]
         private static void InitWindow()
         {
-            ClonesManagerWindow window = (ClonesManagerWindow)EditorWindow.GetWindow(typeof(ClonesManagerWindow));
+            var window = (ClonesManagerWindow)EditorWindow.GetWindow(typeof(ClonesManagerWindow));
             window.titleContent = new GUIContent("Clones Manager");
             window.Show();
         }
@@ -36,7 +36,7 @@ namespace ParrelSync
             if (ClonesManager.IsClone())
             {
                 //Find out the original project name and show the help box
-                string originalProjectPath = ClonesManager.GetOriginalProjectPath();
+                var originalProjectPath = ClonesManager.GetOriginalProjectPath();
                 if (originalProjectPath == string.Empty)
                 {
                     /// If original project cannot be found, display warning message.
@@ -61,7 +61,7 @@ namespace ParrelSync
                 }
                 GUILayout.EndHorizontal();
 
-                string argumentFilePath = Path.Combine(ClonesManager.GetCurrentProjectPath(), ClonesManager.ArgumentFileName);
+                var argumentFilePath = Path.Combine(ClonesManager.GetCurrentProjectPath(), ClonesManager.ArgumentFileName);
                 //Need to be careful with file reading / writing since it will effect the deletion of
                 //  the clone project(The directory won't be fully deleted if there's still file inside being read or write).
                 //The argument file will be deleted first at the beginning of the project deletion process
@@ -69,8 +69,8 @@ namespace ParrelSync
                 //Will need to take some extra cautious if want to change the design of how file editing is handled.
                 if (File.Exists(argumentFilePath))
                 {
-                    string argument = File.ReadAllText(argumentFilePath, System.Text.Encoding.UTF8);
-                    string argumentTextAreaInput = EditorGUILayout.TextArea(argument,
+                    var argument = File.ReadAllText(argumentFilePath, System.Text.Encoding.UTF8);
+                    var argumentTextAreaInput = EditorGUILayout.TextArea(argument,
                         GUILayout.Height(50),
                         GUILayout.MaxWidth(300)
                     );
@@ -92,13 +92,13 @@ namespace ParrelSync
                     clonesScrollPos =
                          EditorGUILayout.BeginScrollView(clonesScrollPos);
                     var cloneProjectsPath = ClonesManager.GetCloneProjectsPath();
-                    for (int i = 0; i < cloneProjectsPath.Count; i++)
+                    for (var i = 0; i < cloneProjectsPath.Count; i++)
                     {
 
                         GUILayout.BeginVertical("GroupBox");
-                        string cloneProjectPath = cloneProjectsPath[i];
+                        var cloneProjectPath = cloneProjectsPath[i];
 
-                        bool isOpenInAnotherInstance = ClonesManager.IsCloneProjectRunning(cloneProjectPath);
+                        var isOpenInAnotherInstance = ClonesManager.IsCloneProjectRunning(cloneProjectPath);
 
                         if (isOpenInAnotherInstance == true)
                             EditorGUILayout.LabelField("Clone " + i + " (Running)", EditorStyles.boldLabel);
@@ -122,7 +122,7 @@ namespace ParrelSync
                         }
                         GUILayout.EndHorizontal();
 
-                        string argumentFilePath = Path.Combine(cloneProjectPath, ClonesManager.ArgumentFileName);
+                        var argumentFilePath = Path.Combine(cloneProjectPath, ClonesManager.ArgumentFileName);
                         //Need to be careful with file reading/writing since it will effect the deletion of
                         //the clone project(The directory won't be fully deleted if there's still file inside being read or write).
                         //The argument file will be deleted first at the beginning of the project deletion process 
@@ -130,8 +130,8 @@ namespace ParrelSync
                         //Will need to take some extra cautious if want to change the design of how file editing is handled.
                         if (File.Exists(argumentFilePath))
                         {
-                            string argument = File.ReadAllText(argumentFilePath, System.Text.Encoding.UTF8);
-                            string argumentTextAreaInput = EditorGUILayout.TextArea(argument,
+                            var argument = File.ReadAllText(argumentFilePath, System.Text.Encoding.UTF8);
+                            var argumentTextAreaInput = EditorGUILayout.TextArea(argument,
                                 GUILayout.Height(50),
                                 GUILayout.MaxWidth(300)
                             );
@@ -157,7 +157,7 @@ namespace ParrelSync
                         GUILayout.BeginHorizontal();
                         if (GUILayout.Button("Delete"))
                         {
-                            bool delete = EditorUtility.DisplayDialog(
+                            var delete = EditorUtility.DisplayDialog(
                                 "Delete the clone?",
                                 "Are you sure you want to delete the clone project '" + ClonesManager.GetCurrentProject().name + "_clone'?",
                                 "Delete",

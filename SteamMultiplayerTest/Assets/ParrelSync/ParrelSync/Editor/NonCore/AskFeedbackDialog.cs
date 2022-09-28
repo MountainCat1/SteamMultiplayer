@@ -16,7 +16,7 @@
         {            
             if (EditorPrefs.HasKey(StopShowingKey)) { return; }
 
-            int InitializeOnLoadCount = EditorPrefs.GetInt(InitializeOnLoadCountKey, 0);
+            var InitializeOnLoadCount = EditorPrefs.GetInt(InitializeOnLoadCountKey, 0);
             if (InitializeOnLoadCount > 20)
             {
                 ShowDialog();
@@ -30,7 +30,7 @@
         //[MenuItem("ParrelSync/(Debug)Show AskFeedbackDialog ")]
         private static void ShowDialog()
         {
-            int option = EditorUtility.DisplayDialogComplex("Do you like " + ParrelSync.ClonesManager.ProjectName + "?",
+            var option = EditorUtility.DisplayDialogComplex("Do you like " + ParrelSync.ClonesManager.ProjectName + "?",
                    "Do you like " + ParrelSync.ClonesManager.ProjectName + "?\n" +
                    "If so, please don't hesitate to star it on GitHub and contribute to the project!",
                    "Star on GitHub",

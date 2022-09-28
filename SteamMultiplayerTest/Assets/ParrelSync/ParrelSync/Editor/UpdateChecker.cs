@@ -13,20 +13,20 @@ namespace ParrelSync.Update
         [MenuItem("ParrelSync/Check for update", priority = 20)]
         static void CheckForUpdate()
         {
-            using (System.Net.WebClient client = new System.Net.WebClient())
+            using (var client = new System.Net.WebClient())
             {
                 try
                 {
                     //This won't work with UPM packages
                     //string localVersionText = AssetDatabase.LoadAssetAtPath<TextAsset>(LocalVersionFilePath).text;
 
-                    string localVersionText = LocalVersion;
+                    var localVersionText = LocalVersion;
                     Debug.Log("Local version text : " + LocalVersion);
 
-                    string latesteVersionText = client.DownloadString(ExternalLinks.RemoteVersionURL);
+                    var latesteVersionText = client.DownloadString(ExternalLinks.RemoteVersionURL);
                     Debug.Log("latest version text got: " + latesteVersionText);
-                    string messageBody = "Current Version: " + localVersionText +"\n"
-                                         +"Latest Version: " + latesteVersionText + "\n";
+                    var messageBody = "Current Version: " + localVersionText +"\n"
+                                      +"Latest Version: " + latesteVersionText + "\n";
                     var latestVersion = new Version(latesteVersionText);
                     var localVersion = new Version(localVersionText);
 

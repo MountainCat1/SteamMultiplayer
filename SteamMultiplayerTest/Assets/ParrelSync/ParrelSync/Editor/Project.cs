@@ -43,7 +43,7 @@ namespace ParrelSync
         /// <returns></returns>
         public object Clone()
         {
-            Project newProject = new Project();
+            var newProject = new Project();
             newProject.rootPath = rootPath;
             newProject.projectPath = projectPath;
             newProject.assetPath = assetPath;
@@ -77,15 +77,15 @@ namespace ParrelSync
         /// <returns></returns>
         public override string ToString()
         {
-            string printString = name + "\n" +
-                                 rootPath + "\n" +
-                                 projectPath + "\n" +
-                                 assetPath + "\n" +
-                                 projectSettingsPath + "\n" +
-                                 packagesPath + "\n" +
-                                 autoBuildPath + "\n" +
-                                 localPackages + "\n" +
-                                 libraryPath;
+            var printString = name + "\n" +
+                              rootPath + "\n" +
+                              projectPath + "\n" +
+                              assetPath + "\n" +
+                              projectSettingsPath + "\n" +
+                              packagesPath + "\n" +
+                              autoBuildPath + "\n" +
+                              localPackages + "\n" +
+                              libraryPath;
             return (printString);
         }
 
@@ -95,7 +95,7 @@ namespace ParrelSync
             projectPath = path;
 
             //pop off the last part of the path for the project name, keep the rest for the root path
-            List<string> pathArray = projectPath.Split(separator).ToList<string>();
+            var pathArray = projectPath.Split(separator).ToList<string>();
             name = pathArray.Last();
 
             pathArray.RemoveAt(pathArray.Count() - 1);

@@ -205,7 +205,7 @@ namespace Network
         /// <returns></returns>
         private IEnumerator SteamCallbackCoroutine()
         {
-            float delay = 1f / steamCallbacksPerSecond;
+            var delay = 1f / steamCallbacksPerSecond;
 
             while (SteamAPI.IsSteamRunning())
             {

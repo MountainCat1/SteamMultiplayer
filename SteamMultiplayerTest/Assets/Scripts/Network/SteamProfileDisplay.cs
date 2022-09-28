@@ -28,7 +28,7 @@ namespace Network
         {
             playerSteamId = (CSteamID)steamID;
             
-            int imageId = SteamFriends.GetLargeFriendAvatar(playerSteamId);
+            var imageId = SteamFriends.GetLargeFriendAvatar(playerSteamId);
 
             if (imageId == -1)
                 return;
@@ -61,10 +61,10 @@ namespace Network
         {
             Texture2D texture = null;
 
-            bool isValid = SteamUtils.GetImageSize(iImage, out uint width, out uint height);
+            var isValid = SteamUtils.GetImageSize(iImage, out var width, out var height);
             if (isValid)
             {
-                byte[] image = new byte[width * height * 4];
+                var image = new byte[width * height * 4];
 
                 isValid = SteamUtils.GetImageRGBA(iImage, image, (int)(width * height * 4));
 

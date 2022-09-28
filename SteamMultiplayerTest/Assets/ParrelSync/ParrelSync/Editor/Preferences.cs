@@ -50,7 +50,7 @@ namespace ParrelSync
         [MenuItem("ParrelSync/Preferences", priority = 1)]
         private static void InitWindow()
         {
-            Preferences window = (Preferences)EditorWindow.GetWindow(typeof(Preferences));
+            var window = (Preferences)EditorWindow.GetWindow(typeof(Preferences));
             window.titleContent = new GUIContent(ClonesManager.ProjectName + " Preferences");
             window.Show();
         }
