@@ -24,7 +24,7 @@ public class SimpleSpriteAnimation : SpriteAnimator
         
         loadedAnimations.Add(new SpriteAnimation()
         {
-            Frames = Resources.LoadAll<Sprite>($"{BaseAnimationPath}/idle").ToArray(),
+            Frames = Resources.LoadAll<Sprite>($"{BaseAnimationPath}/{framesLocation}/idle").ToArray(),
             Name = "idle"
         });
 
