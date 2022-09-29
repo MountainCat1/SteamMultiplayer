@@ -8,8 +8,7 @@ using UnityEngine;
 
 public class CharacterAnimator : SpriteAnimator
 {
-    public string framesLocation = "";
-
+    [SerializeField] private string framesLocation = "";
     private bool _animationsLoaded = false;
 
     public enum Animation

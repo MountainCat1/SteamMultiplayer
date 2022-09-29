@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+[RequireComponent(typeof(SpriteRenderer))]
 public abstract class SpriteAnimator : MonoBehaviour
 {
-    protected const string BaseAnimationPath = "Sprites/Animations";
+    protected const string BaseAnimationPath = "Animations";
     
     [SerializeField] public float speedMultiplier = 1f;
     [HideInInspector] public string playAnimationOnStart;
@@ -81,11 +82,12 @@ public abstract class SpriteAnimator : MonoBehaviour
     IEnumerator PlayAnimation(SpriteAnimation animation)
     {
         var timer = 0f;
-        var delay = animation.Time / speedMultiplier;
+        
         var direction = true;
 
         while (_loop || _currentFrame < animation.Frames.Length - 1)
         {
+            var delay = animation.Time / speedMultiplier;
             while (timer < delay) // wait to match fps
             {
                 timer += Time.deltaTime;
