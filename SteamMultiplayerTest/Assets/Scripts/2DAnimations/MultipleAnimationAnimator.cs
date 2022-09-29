@@ -19,12 +19,14 @@ public class MultipleAnimationAnimator : SpriteAnimator
     private void LoadAnimations()
     {
         var loadedAnimations = new List<SpriteAnimation>();
-        
+
+        var basePath = BaseAnimationPath;
+
         foreach (var animationPath in framesLocations)
         {
             loadedAnimations.Add(new SpriteAnimation()
             {
-                Frames = Resources.LoadAll<Sprite>($"{BaseAnimationPath}/{animationPath}").ToArray(),
+                Frames = Resources.LoadAll<Sprite>($"{basePath}/{animationPath}").ToArray(),
                 Name = animationPath
             });
         }

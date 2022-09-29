@@ -40,9 +40,11 @@ public class SingleAnimationAnimator : SpriteAnimator
     {
         var loadedAnimations = new List<SpriteAnimation>();
 
+        var path = $"Sprites/Animations/{animationName}";
+
         loadedAnimations.Add(new SpriteAnimation()
         {
-            Frames = Resources.LoadAll<Sprite>($"{BaseAnimationPath}").ToArray(),
+            Frames = Resources.LoadAll<Sprite>($"{path}").ToArray(),
             Name = "default",
             Type = SpriteAnimation.AnimationType.Normal
         });

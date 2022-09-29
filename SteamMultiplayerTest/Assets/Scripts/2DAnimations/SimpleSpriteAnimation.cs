@@ -21,10 +21,12 @@ public class SimpleSpriteAnimation : SpriteAnimator
     private void LoadAnimations()
     {
         var loadedAnimations = new List<SpriteAnimation>();
+
+        var basePath = $"{BaseAnimationPath}/{framesLocation}";
         
         loadedAnimations.Add(new SpriteAnimation()
         {
-            Frames = Resources.LoadAll<Sprite>($"{BaseAnimationPath}/{framesLocation}/idle").ToArray(),
+            Frames = Resources.LoadAll<Sprite>($"{basePath}/idle").ToArray(),
             Name = "idle"
         });
 

@@ -48,30 +48,32 @@ public class CharacterAnimator : SpriteAnimator
     private void LoadAnimations()
     {
         var loadedAnimations = new List<SpriteAnimation>();
+
+        var basePath = $"{BaseAnimationPath}/{framesLocation}";
         
         loadedAnimations.Add(new SpriteAnimation()
         {
-            Frames = Resources.LoadAll<Sprite>($"{BaseAnimationPath}/idle").ToArray(),
+            Frames = Resources.LoadAll<Sprite>($"{basePath}/idle").ToArray(),
             Name = "idle"
         });
 
         loadedAnimations.Add(new SpriteAnimation()
         {
-            Frames = Resources.LoadAll<Sprite>($"{BaseAnimationPath}/walk").ToArray(),
+            Frames = Resources.LoadAll<Sprite>($"{basePath}/walk").ToArray(),
             Name = "walk",
             Type = SpriteAnimation.AnimationType.PingPong
         });
 
         loadedAnimations.Add(new SpriteAnimation()
         {
-            Frames = Resources.LoadAll<Sprite>($"{BaseAnimationPath}/jump").ToArray(),
+            Frames = Resources.LoadAll<Sprite>($"{basePath}/jump").ToArray(),
             Name = "jump",
             Type = SpriteAnimation.AnimationType.Normal
         });
 
         loadedAnimations.Add(new SpriteAnimation()
         {
-            Frames = Resources.LoadAll<Sprite>($"{BaseAnimationPath}/fall").ToArray(),
+            Frames = Resources.LoadAll<Sprite>($"{basePath}/fall").ToArray(),
             Name = "fall",
             Type = SpriteAnimation.AnimationType.Normal
         });
