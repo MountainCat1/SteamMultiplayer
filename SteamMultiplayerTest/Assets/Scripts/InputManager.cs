@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    public event Action InputRight;
-    public event Action InputLeft;
-    public event Action InputDown;
-    public event Action InputUp;
+    public event Action OnInputRight;
+    public event Action OnInputLeft;
+    public event Action OnInputDown;
+    public event Action OnInputUp;
     
     private void Update()
     {
@@ -14,13 +14,13 @@ public class InputManager : MonoBehaviour
         var verticalAxis = Input.GetAxis("Vertical");
         
         if(horizontalAxis > 0)
-            InputRight?.Invoke();
+            OnInputRight?.Invoke();
         else if(horizontalAxis < 0)
-            InputLeft?.Invoke();
+            OnInputLeft?.Invoke();
         
         if(verticalAxis > 0)
-            InputUp?.Invoke();
+            OnInputUp?.Invoke();
         else if(verticalAxis < 0)
-            InputDown?.Invoke();
+            OnInputDown?.Invoke();
     }
 }
