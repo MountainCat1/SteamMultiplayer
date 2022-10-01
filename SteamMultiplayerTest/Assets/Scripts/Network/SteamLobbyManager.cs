@@ -127,7 +127,7 @@ namespace Network
 
         public void LeaveLobby()
         {
-            Debug.Log("Leaving lobby");
+            Debug.Log("Leaving the lobby...");
             OnSteamLobbyLocalLeft?.Invoke();
             SteamMatchmaking.LeaveLobby(CurrentLobbySteamID);
         }
