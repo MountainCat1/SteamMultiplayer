@@ -32,7 +32,6 @@ namespace Network
         [SerializeField] private NetworkManager networkManager;
         [SerializeField] private SteamLobbyManager lobbyManager;
         
-
         [SerializeField] public SceneReference initialScene;
 
         public Dictionary<ulong, ClientPlayer> Players { get; } = new();
@@ -110,6 +109,9 @@ namespace Network
         {
             Debug.Log("Shutting down Network Manager...");
             networkManager.Shutdown();
+            
+            Debug.Log("Clearing client player collection...");
+            Players.Clear();
         }
         
         private void OnSteamLobbyCreated()
