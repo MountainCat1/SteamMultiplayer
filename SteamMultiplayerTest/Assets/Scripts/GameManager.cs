@@ -1,36 +1,37 @@
 ﻿using Network;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
     [Header("Dependencies")]
-    [SerializeField] private HostManager _hostManager;
-    [SerializeField] private NetworkManager _networkManager;
+    [SerializeField] private HostManager hostManager;
+    [SerializeField] private NetworkManager networkManager;
 
     [Header("Prefabs")] 
-    [SerializeField] private PlayerController _playerCharacterPrefab;
+    [SerializeField] private PlayerController playerCharacterPrefab;
     
     public void StartGame()
     {
         Debug.Log("Staring the game...");
         
-        Debug.Log($"Spawning {_playerCharacterPrefab.GetType()}s for players...");
+        Debug.Log($"Spawning {playerCharacterPrefab.GetType()}s for players...");
         SpawnPlayerCharacters();
     }
 
     /// <summary>
-    /// Spawns <see cref="_playerCharacterPrefab"/> prefab for every player present in <see cref="_hostManager"/>
+    /// Spawns <see cref="playerCharacterPrefab"/> prefab for every player present in <see cref="hostManager"/>
     /// </summary>
     private void SpawnPlayerCharacters()
     {
-        var clientPlayers = _hostManager.Players;
+        var clientPlayers = hostManager.Players;
         foreach (var playerClient in clientPlayers)
         {
             var player = playerClient.Value;
             var clientId = playerClient.Key;
             
-            var playerController = Instantiate(_playerCharacterPrefab);
+            var playerController = Instantiate(playerCharacterPrefab);
             
             playerController.NetworkObject.SpawnWithOwnership(clientId);
         }
