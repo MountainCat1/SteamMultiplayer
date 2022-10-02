@@ -15,10 +15,8 @@ namespace Network
         public event Action<ServerLog> OnServerLogAdded;
 
         #endregion
-        
-        
-        
-        private readonly List<ServerLog> _serverLogs = new List<ServerLog>();
+
+        public List<ServerLog> ServerLogs { get; set; } = new List<ServerLog>();
 
         private void Awake()
         {
@@ -44,7 +42,7 @@ namespace Network
                 TimeStamp = timeStamp
             };
             
-            _serverLogs.Add(log);
+            ServerLogs.Add(log);
             
             OnServerLogAdded?.Invoke(log);
         }
