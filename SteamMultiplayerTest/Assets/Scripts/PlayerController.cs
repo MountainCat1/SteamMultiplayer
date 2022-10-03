@@ -8,7 +8,6 @@ using UnityEngine;
 [RequireComponent(typeof(ClientNetworkTransform))]
 public class PlayerController : NetworkBehaviour
 {
-
     [SerializeField] private float speed = 1f;
 
     private Transform _transform;
