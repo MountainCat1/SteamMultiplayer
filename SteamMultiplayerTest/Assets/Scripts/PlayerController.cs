@@ -40,10 +40,14 @@ public class PlayerController : NetworkBehaviour
     private void HandleMovement()
     {
         var movement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
+
+        movement *= speed * Time.deltaTime;
+        
         
         var newPosition = _transform.position;
         
-        newPosition.x += movement.x * speed * Time.deltaTime;
+        newPosition.x += movement.x;
+        newPosition.z += movement.y;
 
         _transform.position = newPosition;
     }
