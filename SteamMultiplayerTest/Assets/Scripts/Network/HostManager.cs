@@ -36,7 +36,6 @@ namespace Network
         [Header("Dependencies")] 
         [SerializeField] private NetworkManager networkManager;
         [SerializeField] private SteamLobbyManager lobbyManager;
-        [SerializeField] private ServerMessageLogger serverMessageLogger;
         
         [SerializeField] public SceneReference initialScene;
 
