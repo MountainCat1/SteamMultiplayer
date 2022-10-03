@@ -694,7 +694,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hostManager: {fileID: 1107075270}
   networkManager: {fileID: 1166969132}
-  playerCharacterPrefab: {fileID: 0}
+  playerCharacterPrefab: {fileID: 779374084689949998, guid: 47355b01483b9c64f85eca4a57bdabb9, type: 3}
 --- !u!1 &424911566
 GameObject:
   m_ObjectHideFlags: 0
