@@ -2279,7 +2279,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   networkManager: {fileID: 1166969132}
   lobbyManager: {fileID: 2035312875}
-  serverMessageLogger: {fileID: 0}
   initialScene:
     sceneAsset: {fileID: 102900000, guid: 14a4cff086b0e2c4c8776c1fbd00f252, type: 3}
     scenePath: Assets/Scenes/Initial Game Scene.unity
@@ -2440,7 +2439,12 @@ MonoBehaviour:
     ProtocolVersion: 0
     NetworkTransport: {fileID: 1166969131}
     PlayerPrefab: {fileID: 3812392769026012623, guid: a7381767f1559584eb75320d81f49179, type: 3}
-    NetworkPrefabs: []
+    NetworkPrefabs:
+    - Override: 0
+      Prefab: {fileID: 779374084689949908, guid: 47355b01483b9c64f85eca4a57bdabb9, type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
     TickRate: 30
     ClientConnectionBufferTimeout: 10
     ConnectionApproval: 0
