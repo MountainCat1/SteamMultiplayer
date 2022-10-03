@@ -13,6 +13,11 @@ namespace Network
         #region Events
 
         /// <summary>
+        /// Event invoked whenever game was started, right after initial scene was loaded
+        /// </summary>
+        public event Action OnGameStarted;
+        
+        /// <summary>
         /// Event invoked whenever local player joins a lobby
         /// </summary>
         public event Action OnLobbyLocalJoin; 
@@ -90,6 +95,8 @@ namespace Network
         public void StartGame()
         {
             networkManager.SceneManager.LoadScene(initialScene.ScenePath, LoadSceneMode.Single);
+            
+            OnGameStarted?.Invoke();
         }
         
         public void HostLobby()
