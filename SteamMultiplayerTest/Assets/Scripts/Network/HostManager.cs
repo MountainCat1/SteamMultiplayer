@@ -15,9 +15,9 @@ namespace Network
         /// <summary>
         /// Event invoked whenever local player joins a lobby
         /// </summary>
-        public event Action OnLobbyStart; 
+        public event Action OnLobbyLocalJoin; 
         /// <summary>
-        /// Event invoked whenever player joined a lobby and <see cref="ClientPlayer"/> was instantiated for them
+        /// Event invoked whenever player joins a lobby and <see cref="ClientPlayer"/> was instantiated for them
         /// </summary>
         public event Action<ClientPlayer> OnPlayerJoined;
 
@@ -123,7 +123,7 @@ namespace Network
 
         private void OnSteamLobbyEntered()
         {
-            OnLobbyStart?.Invoke();
+            OnLobbyLocalJoin?.Invoke();
             
             if (networkManager.IsHost)
                 return;

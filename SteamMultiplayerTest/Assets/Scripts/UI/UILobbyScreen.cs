@@ -35,7 +35,7 @@ namespace UI
             
             hostManager.OnPlayerJoined += OnPlayerJoined;
             hostManager.OnPlayerLeft += OnPlayerLeft;
-            hostManager.OnLobbyStart += OnLobbyStart;
+            hostManager.OnLobbyLocalJoin += OnLobbyLocalJoin;
 
             _menuScreen = GetComponent<UIMenuScreen>();
             
@@ -69,7 +69,7 @@ namespace UI
 
         #region Event Handlers
 
-        private void OnLobbyStart()
+        private void OnLobbyLocalJoin()
         {
             _menuScreen.Show();
         }

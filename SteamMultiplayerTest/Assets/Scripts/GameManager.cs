@@ -1,4 +1,5 @@
-﻿using Network;
+﻿using System;
+using Network;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -11,7 +12,22 @@ public class GameManager : MonoBehaviour
 
     [Header("Prefabs")] 
     [SerializeField] private PlayerController playerCharacterPrefab;
+
+
+    #region Unity Methods
+
+    private void Awake()
+    {
+           
+    }
+
+    #endregion
     
+
+
+    /// <summary>
+    /// Sets up player characters and starts the game
+    /// </summary>
     public void StartGame()
     {
         Debug.Log("Staring the game...");
