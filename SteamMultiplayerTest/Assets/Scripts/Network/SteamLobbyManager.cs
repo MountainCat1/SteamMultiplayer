@@ -45,7 +45,7 @@ namespace Network
         protected const string LobbyNameKey = "name";
     
         //[SerializeField] private NetworkManager networkManager;
-        [SerializeField] private SteamNetworkingTransport networkTransport;
+        [SerializeField] private SteamNetworkingSocketsTransport networkTransport;
 
         // Configuration
         [SerializeField] private int maxPlayersInLobby = 4;

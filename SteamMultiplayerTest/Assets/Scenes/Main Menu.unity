@@ -2385,7 +2385,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1166969130}
   - component: {fileID: 1166969132}
-  - component: {fileID: 1166969131}
+  - component: {fileID: 1166969133}
   m_Layer: 0
   m_Name: Network Manager
   m_TagString: Untagged
@@ -2408,19 +2408,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1166969131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1166969129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b81d70b2c3b41142a37e631239ef533, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ConnectToSteamID: 480
 --- !u!114 &1166969132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2437,7 +2424,7 @@ MonoBehaviour:
   LogLevel: 1
   NetworkConfig:
     ProtocolVersion: 0
-    NetworkTransport: {fileID: 1166969131}
+    NetworkTransport: {fileID: 1166969133}
     PlayerPrefab: {fileID: 3812392769026012623, guid: a7381767f1559584eb75320d81f49179, type: 3}
     NetworkPrefabs:
     - Override: 0
@@ -2460,6 +2447,20 @@ MonoBehaviour:
     LoadSceneTimeOut: 120
     SpawnTimeout: 1
     EnableNetworkLogs: 1
+--- !u!114 &1166969133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1166969129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc4ccaff1920208429cca7c350560301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConnectToSteamID: 480
+  options: []
 --- !u!1 &1168058208
 GameObject:
   m_ObjectHideFlags: 0
@@ -3733,7 +3734,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8359822cd0dbea14a8de31a256788f8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  networkTransport: {fileID: 1166969131}
+  networkTransport: {fileID: 1166969133}
   maxPlayersInLobby: 4
   steamCallbacksPerSecond: 30
 --- !u!4 &2035312876
